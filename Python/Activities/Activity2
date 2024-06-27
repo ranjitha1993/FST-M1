@@ -1,0 +1,6 @@
+num = int(input("Enter a no"))
+mod = num % 2
+if mod > 0:
+    print("Picked odd no")
+else:
+    print("Picked even no")
