@@ -1,28 +1,40 @@
-package demos;
+package com.example.fst_testng;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
-public class Activity4 {
+import io.github.bonigarcia.wdm.WebDriverManager;
 
-	public static void main(String[] args) {
-		
-		WebDriver driver = new ChromeDriver();
-		driver.get("https://v1.training-support.net/selenium/target-practice");
-		System.out.println("Title of the page is:  "  + driver.getTitle());
-		
-		  String thirdHeaderText = driver.findElement(By.xpath("//h3[@id='third-header']")).getText();
-	        System.out.println(thirdHeaderText);
+public class A4 {
 
-	        String fifthHeaderColor = driver.findElement(By.xpath("//h5[text()='Fifth header']")).getCssValue("color");
-	        System.out.println(fifthHeaderColor);
+	WebDriver driver;
 
-	        String violetButtonClass = driver.findElement(By.xpath("//button[text()='Violet']")).getAttribute("class");
-	        System.out.println(violetButtonClass);
-	        String greyButtonText = driver.findElement(By.xpath("//button[text()='Grey']")).getText();
-	        System.out.println(greyButtonText);
-	        driver.close();
+	@BeforeClass
+	public void beforeMethod() {
 
+		WebDriverManager.firefoxdriver().setup();
+		driver = new FirefoxDriver();
+		driver.get("https://alchemy.hguy.co/lms");
+	}
+
+	@Test
+	public void TestCase4() {
+
+		WebElement spct = driver.findElement(By.xpath("(//h3[@class='entry-title'])[2]"));
+        String courseTitle = spct.getText();
+        System.out.println("Second most popular course is : " +courseTitle);
+        Assert.assertEquals(courseTitle, "Email Marketing Strategies");
+	}
+
+	@AfterClass
+	public void afterMethod() {
+		driver.quit();
 	}
 
 }
