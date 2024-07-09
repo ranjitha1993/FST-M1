@@ -1,20 +1,40 @@
-package demos;
-
+package com.example.fst_testng;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class Activity2 {
-    public static void main(String[] args) {
-       
-    	WebDriver driver = new ChromeDriver();
-        driver.get("https://v1.training-support.net/selenium/login-form");
-        System.out.println("Home page title: " + driver.getTitle());
-        driver.findElement(By.id("username")).sendKeys("admin");
-        driver.findElement(By.id("password")).sendKeys("password");
-        driver.findElement(By.xpath("//button[text()='Log in']")).click();
-        String message = driver.findElement(By.id("action-confirmation")).getText();
-        System.out.println("Login message: " + message);
-        driver.close();
+
+public class A2 {
+   
+    WebDriver driver;
+    
+    @BeforeClass
+    public void beforeMethod() {
+  
+        WebDriverManager.firefoxdriver().setup();
+        driver = new FirefoxDriver();      
+        driver.get("https://alchemy.hguy.co/lms");
     }
+
+    @Test
+    public void TestCase2() {
+    	
+    	 WebElement heading = driver.findElement(By.xpath("//h1"));
+         String headingText = heading.getText();
+         Assert.assertEquals(headingText, "Learn from Industry Experts");
+     }         
+       
+    
+
+    @AfterClass
+    public void afterMethod() {
+        driver.quit();
+    }
+
 }
