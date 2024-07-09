@@ -1,27 +1,40 @@
-package demos;
+package com.example.fst_testng;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
-public class Activity3 {
-	public static void main(String[] args) {
+import io.github.bonigarcia.wdm.WebDriverManager;
 
-		WebDriver driver = new ChromeDriver();
+public class A3 {
 
-		driver.get("https://v1.training-support.net/selenium/login-form");
+	WebDriver driver;
 
-		System.out.println("Home page title: " + driver.getTitle());
+	@BeforeClass
+	public void beforeMethod() {
 
-		driver.findElement(By.xpath("//input[@id='username']")).sendKeys("admin");
-
-		driver.findElement(By.xpath("//input[@id='password']")).sendKeys("password");
-
-		driver.findElement(By.xpath("//button[text()='Log in']")).click();
-
-		String message = driver.findElement(By.xpath("//div[@id='action-confirmation']")).getText();
-		System.out.println("Login message: " + message);
-
-		driver.close();
+		WebDriverManager.firefoxdriver().setup();
+		driver = new FirefoxDriver();
+		driver.get("https://alchemy.hguy.co/lms");
 	}
+
+	@Test
+	public void TestCase3() {
+
+		WebElement at = driver.findElement(By.xpath("//h3"));
+		String aText = at.getText();
+		System.out.println("The text is :" +aText);
+		Assert.assertEquals(aText, "Actionable Training");
+	}
+
+	@AfterClass
+	public void afterMethod() {
+		driver.quit();
+	}
+
 }
