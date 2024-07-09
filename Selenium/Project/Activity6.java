@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class A6 {
+public class Activity6 {
 
 	WebDriver driver;
 
