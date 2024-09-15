@@ -4,28 +4,28 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class Activity11 {
+public class Activity12 {
     public static void main(String[] args) {
-   
         WebDriverManager.firefoxdriver().setup();
 
         WebDriver driver = new FirefoxDriver();
 
 
-    
         driver.get("https://v1.training-support.net/selenium/dynamic-controls");
 
         System.out.println("Home page title: " + driver.getTitle());
 
 
-        WebElement checkbox = driver.findElement(By.name("toggled"));
-        checkbox.click();
-        System.out.println("Checkbox is selected: " + checkbox.isSelected());
+        WebElement textbox = driver.findElement(By.id("input-text"));
 
-        checkbox.click();
-        System.out.println("Checkbox is selected: " + checkbox.isSelected());
+        System.out.println("Input field is enabled: " + textbox.isEnabled());
+
+        driver.findElement(By.id("toggleInput")).click();
+
+        System.out.println("Input field is enabled: " + textbox.isEnabled());
 
 
         driver.close();
