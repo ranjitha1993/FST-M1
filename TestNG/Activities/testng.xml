@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="testSuite">
-    <test name="FSTTests">
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="ExampleSuite" >
+    <test name="SuiteTests" >
         <classes>
-            <class name="packageName.ClassName" />
+            <class name="suiteExample.DemoOne"/>
+            <class name="suiteExample.DemoTwo"/>
         </classes>
     </test>
 </suite>
+
